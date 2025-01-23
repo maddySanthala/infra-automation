@@ -10,7 +10,7 @@ def call(String GIT_REPO) {
         parameters {
             gitParameter(
                 name: 'BRANCH',
-                typr: 'Branch',
+                type: 'Branch',
                 defaultValue: 'main',
                 useRepository: "https://github.com/maddySanthala/${GIT_REPO}.git",
                 description: 'Select branch to build',
