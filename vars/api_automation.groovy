@@ -20,25 +20,31 @@ def call(String GIT_REPO) {
         stages {
             stage('Checkout Infra Code') {
                 steps {
-                    checkout scmGit(
-                        branches: [[name: '*/shared_libraries']],
-                        extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'infra-automation']],
-                        userRemoteConfigs: [[
-                            credentialsId: "${CREDENTIAL_ID}",
-                            url: 'https://github.com/maddySanthala/infra-automation.git'
-                        ]]
-                    )
+                    script {
+                        checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: '*/shared_libraries']],
+                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'infra-automation']],
+                            userRemoteConfigs: [[
+                                credentialsId: 'my-ssh-key', // Replace with actual credential ID
+                                url: 'https://github.com/maddySanthala/infra-automation.git'
+                            ]]
+                        ])
+                    }
                 }
             }
             stage('Checkout Source Code') {
                 steps {
-                    checkout scmGit(
-                        branches: [[name: "${BRANCH}"]],
-                        userRemoteConfigs: [[
-                            credentialsId: "${CREDENTIAL_ID}",
-                            url: "https://github.com/maddySanthala/${GIT_REPO}.git"
-                        ]]
-                    )
+                    script {
+                        checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: "${params.BRANCH}"]],
+                            userRemoteConfigs: [[
+                                credentialsId: 'my-ssh-key', // Replace with actual credential ID
+                                url: "https://github.com/maddySanthala/${GIT_REPO}.git"
+                            ]]
+                        ])
+                    }
                 }
             }
             stage('Maven Compile') {
@@ -56,4 +62,3 @@ def call(String GIT_REPO) {
         }
     }
 }
-
