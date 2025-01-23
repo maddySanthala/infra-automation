@@ -12,7 +12,7 @@ def call(String GIT_REPO) {
                 name: 'BRANCH',
                 type: 'Branch',
                 defaultValue: 'main',
-                useRepository: "https://github.com/maddySanthala/${GIT_REPO}.git",
+                useRepository: "git@github.com:maddySanthala/${GIT_REPO}.git",
                 description: 'Select branch to build',
                 branchFilter: 'origin/(.*)',
                 tagFilter: '*'
@@ -28,7 +28,7 @@ def call(String GIT_REPO) {
                             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'infra-automation']],
                             userRemoteConfigs: [[
                                 credentialsId: 'my-ssh-key', // Replace with actual credential ID
-                                url: 'https://github.com/maddySanthala/infra-automation.git'
+                                url: 'git@github.com:maddySanthala/infra-automation.git'
                             ]]
                         ])
                     }
@@ -42,7 +42,7 @@ def call(String GIT_REPO) {
                             branches: [[name: "${params.BRANCH}"]],
                             userRemoteConfigs: [[
                                 credentialsId: 'my-ssh-key', // Replace with actual credential ID
-                                url: "https://github.com/maddySanthala/${GIT_REPO}.git"
+                                url: "git@github.com:maddySanthala/${GIT_REPO}.git"
                             ]]
                         ])
                     }
