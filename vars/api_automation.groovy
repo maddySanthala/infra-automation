@@ -22,7 +22,7 @@ def call(String GIT_REPO) {
                 steps {
                     checkout scmGit(
                         branches: [[name: '*/shared_libraries']],
-                        extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'my-infra-automation']],
+                        extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'infra-automation']],
                         userRemoteConfigs: [[
                             credentialsId: "${CREDENTIAL_ID}",
                             url: 'https://github.com/maddySanthala/infra-automation.git'
@@ -56,3 +56,4 @@ def call(String GIT_REPO) {
         }
     }
 }
+
