@@ -24,7 +24,7 @@ def call(String GIT_REPO) {
                     script {
                         checkout([
                             $class: 'GitSCM',
-                            branches: [[name: '*/shared_libraries']],
+                            branches: [[name: '*/shared-libraries']],
                             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'infra-automation']],
                             userRemoteConfigs: [[
                                 credentialsId: 'my-ssh-key', // Replace with actual credential ID
