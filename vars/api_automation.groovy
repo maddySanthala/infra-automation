@@ -11,7 +11,7 @@ def call(String GIT_REPO) {
             gitParameter(
                 name: 'BRANCH',
                 type: 'Branch',
-                defaultValue: 'main',
+                defaultValue: 'master',
                 useRepository: "git@github.com:maddySanthala/${GIT_REPO}.git",
                 description: 'Select branch to build',
                 branchFilter: 'origin/(.*)',
